@@ -1,0 +1,22 @@
+{% extends "CFCentreBundle::layout.html.twig" %}
+
+{% block title %} Suppression d'une formation - {{ parent() }} {% endblock %}
+
+{% block body %}
+    <h1>Suppression d'une formation</h1>
+    <p>Vous êtes sûr le point de supprimer la formation <strong>{{ formation.nom }}</strong>
+        {% if formation.formateur is not null %} donner par <strong>{{ formation.formateur.nomComplet }}</strong>{% endif %}.</p>
+
+    <form method="post">
+        <a href="{{ path('cf_centre_formateur') }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour à la liste
+        </a>
+        <button type="submit" class="btn btn-danger">
+            <span class="glyphicon glyphicon-trash"></span>
+            Supprimer définitivement
+        </button>
+        {{ form_rest(form) }}
+    </form>
+
+{% endblock %}

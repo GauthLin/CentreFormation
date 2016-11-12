@@ -1,0 +1,47 @@
+cf_centre_homepage:
+    path:     /centre
+    defaults: { _controller: CFCentreBundle:Centre:index }
+
+cf_centre_remun:
+    path: /centre/remuneration
+    defaults: { _controller: CFCentreBundle:Centre:remun }
+
+cf_centre_formateur:
+    path: /centre/formateur
+    defaults: { _controller: CFCentreBundle:Formateur:index }
+
+cf_centre_formateur_add:
+    path: /centre/formateur/add
+    defaults: { _controller: CFCentreBundle:Formateur:add }
+
+cf_centre_formateur_modif:
+    path: /centre/formateur/modif/{slug}
+    defaults: { _controller: CFCentreBundle:Formateur:modif }
+    requirements:
+        slug: .+
+
+cf_centre_formateur_del:
+    path: /centre/formateur/del/{slug}
+    defaults: { _controller: CFCentreBundle:Formateur:del }
+    requirements:
+        slug: .+
+
+cf_centre_formation:
+    path: /centre/formation
+    defaults: { _controller: CFCentreBundle:Formation:index }
+
+cf_centre_formation_add:
+    path: /centre/formation/add
+    defaults: { _controller: CFCentreBundle:Formation:add }
+
+cf_centre_formation_modif:
+    path: /centre/formation/modif/{slug}
+    defaults: { _controller: CFCentreBundle:Formation:modif }
+    requirements:
+            slug: .+
+
+cf_centre_formation_del:
+    path: /centre/formation/del/{slug}
+    defaults: { _controller: CFCentreBundle:Formation:del }
+    requirements:
+            slug: .+

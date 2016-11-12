@@ -1,0 +1,10 @@
+{% extends "CFCentreBundle::layout.html.twig" %}
+
+{% block title %} Modification d'une formation - {{ parent() }} {% endblock %}
+
+{% block body %}
+    <h1>Modification d'une formation</h1>
+
+    {{ include("CFCentreBundle:Formation:form.html.twig") }}
+
+{% endblock %}

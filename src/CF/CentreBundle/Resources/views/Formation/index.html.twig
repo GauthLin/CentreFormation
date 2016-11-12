@@ -1,0 +1,43 @@
+{% extends "CFCentreBundle::layout.html.twig" %}
+
+{% block title %} Liste des formations - {{ parent() }}{% endblock %}
+
+{% block body %}
+
+    <h1>Liste des formations</h1>
+    <table class="table">
+        <tr><th>Titre</th><th>Date</th><th>Durée</th><th>Formateur</th><th>Action</th></tr>
+        {% for formation in listFormations %}
+            <tr>
+                <td>{{ formation.nom }}</td>
+                <td>{{ formation.date|date('d/m/Y à H:i') }}</td>
+                <td>{{ formation.duree }}</td>
+                <td>
+                    {% if formation.formateur.nomComplet is defined %}
+                        {{ formation.formateur.nomComplet }}
+                    {% else %}
+                        Auncun formateur désigné
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('cf_centre_formation_modif', {'slug': formation.slug}) }}" class="btn btn-info">
+                        <span class="glyphicon glyphicon-edit"></span>
+                        Modifier
+                    </a>
+                    <a href="{{ path('cf_centre_formation_del', {'slug': formation.slug}) }}" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        Supprimer
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="5" class="text-center">Il n'y a encore aucune formation</td></tr>
+        {% endfor %}
+    </table>
+    <p class="text-right">
+        <a href="{{ path('cf_centre_formation_add') }}" class="btn btn-success">
+            <span class="glyphicon glyphicon-plus"></span>
+            Ajouter une formation
+        </a>
+    </p>
+{% endblock %}

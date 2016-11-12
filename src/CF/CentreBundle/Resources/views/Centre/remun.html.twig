@@ -1,0 +1,19 @@
+{% extends "CFCentreBundle::layout.html.twig" %}
+
+{% block title %} Rémunération - {{ parent() }} {% endblock %}
+
+{% block body %}
+    <h1>Rémunération des formateurs</h1>
+    <table class="table">
+        <tr><th>Nom</th><th>Prénom</th><th>Rémunération</th></tr>
+        {% for formateur in listFormateurs %}
+            <tr>
+                <td>{{ formateur.nom }}</td>
+                <td>{{ formateur.prenom }}</td>
+                <td>{{ remun[loop.index0] }}€</td>
+            </tr>
+        {% else %}
+            <tr><td colspan="3">Il n'y a encore aucun formateur</td></tr>
+        {% endfor %}
+    </table>
+{% endblock %}

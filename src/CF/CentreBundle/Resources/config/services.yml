@@ -1,0 +1,11 @@
+services:
+#    cf_centre.example:
+#        class: CF\CentreBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    # Envoi d'un mail à chaque formation
+    cf_centre.doctrine.notification:
+        class: CF\CentreBundle\DoctrineListener\FormationNotification
+        arguments: [@mailer]
+        tags:
+            - { name: doctrine.event_listener, event: postUpdate }

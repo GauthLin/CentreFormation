@@ -1,0 +1,11 @@
+{% extends "CFCentreBundle::layout.html.twig" %}
+
+{% block title %} Ajout d'un formateur - {{ parent() }} {% endblock %}
+
+{% block body %}
+    <h1>Ajout d'un formateur</h1>
+    <p>Afin d'ajouter un formateur, merci de compléter le formulaire ce-dessous.</p>
+
+    {{ include("CFCentreBundle:Formateur:form.html.twig") }}
+
+{% endblock %}

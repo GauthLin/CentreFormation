@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Centre de Formation{% endblock %}</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ path('cf_centre_homepage') }}">Centre de formation</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li {% if app.request.requesturi == path('cf_centre_homepage') %}class="active" {% endif %}>
+                            <a href="{{ path('cf_centre_homepage') }}">Accueil</a>
+                        </li>
+                        <li {% if (app.request.requesturi == path('cf_centre_formation')) or (app.request.requesturi == path('cf_centre_formation_add'))%}class="active" {% endif %}>
+                            <a href="{{ path('cf_centre_formation') }}">Formations</a>
+                        </li>
+                        <li {% if app.request.requesturi == path('cf_centre_formateur') %}class="active" {% endif %}>
+                            <a href="{{ path('cf_centre_formateur') }}">Formateurs</a></li>
+                        <li {% if app.request.requesturi == path('cf_centre_remun') %}class="active" {% endif %}>
+                            <a href="{{ path("cf_centre_remun") }}">Rémunération</a>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div id="content">
+            <div class="well">
+                {% for flashMessage in app.session.flashBag.get('info') %}
+                    <div class="alert alert-success">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+
+                {%  block body %}
+
+                {% endblock %}
+            </div>
+        </div>
+
+        <div class="panel-footer text-center">
+            Réalisé par Linard Gauthier - Tous droits réservés © {{ "now"|date('Y') }}.
+        </div>
+
+        {% block javascripts %}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        {% endblock %}
+    </body>
+</html>

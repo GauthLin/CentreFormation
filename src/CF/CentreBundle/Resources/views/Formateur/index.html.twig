@@ -1,0 +1,35 @@
+{% extends "CFCentreBundle::layout.html.twig" %}
+
+{% block title %} Liste des formateurs - {{ parent() }} {% endblock %}
+
+{% block body %}
+    <h1>Liste des formateurs</h1>
+    <table class="table">
+        <tr><th>Nom</th><th>Prénom</th><th>GSM</th><th>Email</th><th>Action</th></tr>
+        {% for formateur in listFormateurs %}
+            <tr>
+                <td>{{ formateur.nom }}</td>
+                <td>{{ formateur.prenom }}</td>
+                <td>{{ formateur.gsm|slice(0,4) }}/{{ formateur.gsm|slice(4,2) }}.{{ formateur.gsm|slice(6,2) }}.{{ formateur.gsm|slice(8,2) }}</td>
+                <td>{{ formateur.email }}</td>
+                <td>
+                    <a href="{{ path('cf_centre_formateur_modif',{'slug': formateur.slug}) }}" class="btn btn-info">
+                        <span class="glyphicon glyphicon-edit"></span>
+                        Modifier
+                    </a>
+                    <a href="{{ path('cf_centre_formateur_del', {'slug': formateur.slug}) }}" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        Supprimer
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="5" class="text-center">Il n'y a encore aucun formateur.</td></tr>
+        {% endfor %}
+    </table>
+    <p class="text-right"><a class="btn btn-success" href="{{ path('cf_centre_formateur_add') }}">
+            <span class="glyphicon glyphicon-plus"></span>
+            Ajouter un formateur
+        </a>
+    </p>
+{% endblock %}
